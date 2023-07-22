@@ -1,0 +1,31 @@
+.input,
+.select,
+.textarea {
+    box-shadow: none;
+    outline: none;
+    padding: 8px;
+    color: $color-white;
+    font-family: 'Fira Mono', monospace;
+    background-color: transparent;
+    border: 1px solid darken($color-grey, 30);
+    font-size: 14px;
+
+    &::placeholder {
+        color: $color-grey;
+    }
+
+    &:focus {
+        border-color: $color-cyan;
+    }
+
+    .is-disabled,
+    &:disabled {
+        background-color: #35414c;
+        color: $color-grey;
+    }
+}
+
+.textarea {
+    height: 120px;
+    resize: none;
+}
