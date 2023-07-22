@@ -7,7 +7,7 @@ defineProps({ factions: Object })
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Обзорная" />
 
     <AuthenticatedLayout>
         <template #header>
