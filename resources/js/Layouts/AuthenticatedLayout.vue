@@ -40,6 +40,11 @@ const showingNavigationDropdown = ref(false);
                                 {{ userCharacteristic.name }}
                                 {{ userCharacteristic.amount }}
                             </span>
+                            <span class="text-white " v-for="userResource in $page.props.auth.userResources">
+                                {{ userResource.name }}
+                                {{ userResource.amount }}Текущее
+                                {{ userResource.max_amount }}Макс
+                            </span>
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">
