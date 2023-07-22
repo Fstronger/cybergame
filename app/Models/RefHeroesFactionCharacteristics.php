@@ -15,4 +15,9 @@ class RefHeroesFactionCharacteristics extends Model
      * @var string
      */
     protected $table = 'ref_heroes_faction_characteristics';
+
+    public function characteristicName(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(RefCharacteristics::class, 'id', 'characteristic_id');
+    }
 }

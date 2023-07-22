@@ -120,5 +120,28 @@ class DatabaseSeeder extends Seeder
             'name' => 'Здоровье',
             'icon' => 'none'
         ]);
+
+        for ($i = 1; $i <= 9; $i++)
+        {
+            // 1 герой
+            DB::table('ref_heroes_faction_characteristics')->insert([
+                'heroes_id' => $i,
+                'characteristic_id' => '1',
+                'amount' => rand(9, 20)
+            ]);
+
+            DB::table('ref_heroes_faction_characteristics')->insert([
+                'heroes_id' => $i,
+                'characteristic_id' => '2',
+                'amount' => rand(9, 20)
+            ]);
+
+            DB::table('ref_heroes_faction_characteristics')->insert([
+                'heroes_id' => $i,
+                'characteristic_id' => '3',
+                'amount' => rand(75, 115)
+            ]);
+        }
+
     }
 }

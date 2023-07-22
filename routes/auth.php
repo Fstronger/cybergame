@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\RefController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -33,6 +34,9 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
+
+    Route::get('faction-heroes/{factionId}', [RefController::class, 'getFactionHeroes'])
+        ->name('factionHeroes');
 });
 
 Route::middleware('auth')->group(function () {
