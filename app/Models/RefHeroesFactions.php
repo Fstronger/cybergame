@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed $characteristics
+ */
 class RefHeroesFactions extends Model
 {
     use HasFactory;
@@ -15,4 +18,9 @@ class RefHeroesFactions extends Model
      * @var string
      */
     protected $table = 'ref_heroes_factions';
+
+    public function characteristics(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(RefHeroesFactionCharacteristics::class, 'heroes_id', 'id');
+    }
 }
