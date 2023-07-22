@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\RefCharacteristics;
+use App\Models\RefFactions;
 use App\Models\User;
 use App\Models\UserCharacteristics;
 use App\Providers\RouteServiceProvider;
@@ -24,7 +25,11 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        //Вывод всех фракций
+        $factions = RefFactions::all();
+        return Inertia::render('Auth/Register', [
+            'factions' => $factions
+        ]);
     }
 
     /**
@@ -35,7 +40,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:'.User::class,
             'email' => 'required|string|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);

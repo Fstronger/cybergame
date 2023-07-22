@@ -12,15 +12,15 @@ class RefController extends Controller
     /**
      * Возращает список героев фракции
      * @param $factionId
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function getFactionHeroes($factionId): array
+    public function getFactionHeroes($factionId)
     {
         $faction = RefFactions::findOrFail($factionId);
 
         $factionHelper = new FactionHelper($faction);
 
-        return $factionHelper->getFactionHeroes();
+        return  response()->json(['data' => $factionHelper->getFactionHeroes(), 'status' => '200']);
     }
 
 }
