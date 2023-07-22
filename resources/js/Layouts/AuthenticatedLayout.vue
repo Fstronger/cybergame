@@ -53,7 +53,7 @@ const showingNavigationDropdown = ref(false);
                             </span>
                             <br>
                             <br>
-                            <h3>Одетое оружие</h3>
+                            <h3>Надетое оружие</h3>
                             <span class="text-white " v-for="userWeapon in $page.props.auth.userWeapons">
                                 <br>
                                 <ul>
