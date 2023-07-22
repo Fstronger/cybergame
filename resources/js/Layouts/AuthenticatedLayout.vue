@@ -52,6 +52,27 @@ const showingNavigationDropdown = ref(false);
                                 <p>Макс {{ userResource.max_amount }}</p>
                             </span>
                             <br>
+                            <br>
+                            <h3>Одетое оружие</h3>
+                            <span class="text-white " v-for="userWeapon in $page.props.auth.userWeapons">
+                                <br>
+                                <ul>
+                                    {{ userWeapon.name }}
+                                    <li>Иконка:{{ userWeapon.icon_type }}</li>
+                                    <li>Имя ствола:{{ userWeapon.weapon.name }}</li>
+                                    <li>Уровень:{{ userWeapon.weapon.level }}</li>
+                                    <li>Мин дамаг:{{ userWeapon.weapon.min_damage }}</li>
+                                    <li>Макс дамаг:{{ userWeapon.weapon.max_damage }}</li>
+                                    <li>Уникальность:{{ userWeapon.weapon.unique_name }}</li>
+                                    <li>Цвет уникальности:{{ userWeapon.weapon.unique_color }}</li>
+                                    <li>Описание:{{ userWeapon.weapon.description }}</li>
+                                    <li>Цена:{{ userWeapon.weapon.price }}</li>
+                                    <li>Картинка ствола:{{ userWeapon.weapon.image }}</li>
+                                </ul>
+                                <p></p>
+                            </span>
+                            <br>
+                            <br>
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">

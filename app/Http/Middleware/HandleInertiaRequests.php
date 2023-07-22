@@ -33,17 +33,20 @@ class HandleInertiaRequests extends Middleware
     {
         $userCharacteristics = [];
         $userResources = [];
+        $userWeapons = [];
         if (!is_null($request->user())){
             $userHelper = new UserHelper($request->user());
             $userCharacteristics = $userHelper->getUserCharacteristics();
             $userResources = $userHelper->getUserResources();
+            $userWeapons = $userHelper->getUserWeapons();
         }
 
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
                 'userCharacteristics' => $userCharacteristics,
-                'userResources' => $userResources
+                'userResources' => $userResources,
+                'userWeapons' => $userWeapons
             ],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [

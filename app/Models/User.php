@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static find(int $int)
  * @property mixed $characteristics
  * @property mixed $resources
+ * @property mixed $weapons
  */
 class User extends Authenticatable
 {
@@ -57,5 +58,10 @@ class User extends Authenticatable
     public function resources(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(UserResources::class, 'user_id', 'id');
+    }
+
+    public function weapons(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(UserWeapons::class, 'user_id', 'id');
     }
 }

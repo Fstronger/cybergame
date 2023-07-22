@@ -180,5 +180,94 @@ class DatabaseSeeder extends Seeder
             'max_amount' => 1000,
         ]);
 
+        DB::table('ref_types_weapons')->insert([
+            'name' => 'Ближнее',
+            'icon' => 'none'
+        ]);
+
+        DB::table('ref_types_weapons')->insert([
+            'name' => 'Дальнее',
+            'icon' => 'none'
+        ]);
+
+        DB::table('ref_types_weapons')->insert([
+            'name' => 'Метательное',
+            'icon' => 'none'
+        ]);
+
+        DB::table('ref_unique_weapons')->insert([
+            'name' => 'Обычное',
+            'color' => 'gray'
+        ]);
+
+        DB::table('ref_unique_weapons')->insert([
+            'name' => 'Редкое',
+            'color' => 'blue'
+        ]);
+
+        DB::table('ref_unique_weapons')->insert([
+            'name' => 'Легендарное',
+            'color' => 'yellow'
+        ]);
+
+        DB::table('ref_unique_weapons')->insert([
+            'name' => 'Мифическое',
+            'color' => 'purple'
+        ]);
+
+        DB::table('all_weapons')->insert([
+           'name'=> 'Нож',
+           'type_weapon_id' => 1,
+           'level' => 1,
+           'min_damage' => 5,
+           'max_damage' => 15,
+           'unique_id' => 1,
+           'description' => 'Описание оружия',
+           'price' => 150,
+           'image' => 'none'
+        ]);
+
+        DB::table('all_weapons')->insert([
+           'name'=> 'Винтовка',
+           'type_weapon_id' => 2,
+           'level' => 1,
+           'min_damage' => 10,
+           'max_damage' => 20,
+           'unique_id' => 2,
+           'description' => 'Описание оружия',
+           'price' => 250,
+           'image' => 'none'
+        ]);
+
+        DB::table('all_weapons')->insert([
+           'name'=> 'Граната',
+           'type_weapon_id' => 3,
+           'level' => 1,
+           'min_damage' => 25,
+           'max_damage' => 75,
+           'unique_id' => 3,
+           'description' => 'Описание оружия',
+           'price' => 345,
+           'image' => 'none'
+        ]);
+
+        DB::table('user_weapons')->insert([
+           'user_id' => 1,
+           'type_weapon_id' => 1,
+           'weapon_id' => 1,
+        ]);
+
+        DB::table('user_weapons')->insert([
+           'user_id' => 1,
+           'type_weapon_id' => 2,
+           'weapon_id' => 2,
+        ]);
+
+        DB::table('user_weapons')->insert([
+           'user_id' => 1,
+           'type_weapon_id' => 3,
+           'weapon_id' => 3,
+        ]);
+
     }
 }

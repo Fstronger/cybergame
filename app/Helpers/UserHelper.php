@@ -53,4 +53,33 @@ class UserHelper
         return $userResources;
     }
 
+    /**
+     * Получений оружий надетых на персонажа
+     * @return array
+     */
+    public function getUserWeapons(): array
+    {
+        $weapons= $this->user->weapons;
+        $userWeapons = [];
+        foreach ($weapons as $weapon) {
+            $userWeapons[] = [
+                'name' => $weapon->weaponType->name,
+                'icon_type' => $weapon->weaponType->icon,
+                'weapon' => [
+                    'name' => $weapon->weapon->name,
+                    'level' => $weapon->weapon->level,
+                    'min_damage' => $weapon->weapon->min_damage,
+                    'max_damage' => $weapon->weapon->max_damage,
+                    'unique_name' => $weapon->weapon->unique->name,
+                    'unique_color' => $weapon->weapon->unique->color,
+                    'description' => $weapon->weapon->description,
+                    'price' => $weapon->weapon->price,
+                    'image' => $weapon->weapon->image
+                ]
+            ];
+        }
+
+        return $userWeapons;
+    }
+
 }
