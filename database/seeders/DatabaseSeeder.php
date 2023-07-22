@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\RefCharacteristics;
 use App\Models\RefFactions;
 use App\Models\RefHeroesFactions;
 use App\Models\User;
@@ -19,11 +20,35 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-//         User::factory()->create([
-//             'name' => 'Test User',
-//             'email' => 'test@example.com',
-//             'password' => Hash::make('password')
-//         ]);
+         User::factory()->create([
+             'name' => 'Test User',
+             'email' => 'test@test.com',
+             'password' => Hash::make('password')
+         ]);
+
+         DB::table('user_characteristics')->insert(
+             [
+                 'user_id' => 1,
+                 'characteristic_id' => RefCharacteristics::ATTACK,
+                 'amount' => 15
+             ]
+         );
+
+         DB::table('user_characteristics')->insert(
+             [
+                 'user_id' => 1,
+                 'characteristic_id' => RefCharacteristics::ARMOR,
+                 'amount' => 20
+             ]
+         );
+
+         DB::table('user_characteristics')->insert(
+             [
+                 'user_id' => 1,
+                 'characteristic_id' => RefCharacteristics::HP,
+                 'amount' => 100
+             ]
+         );
 
         DB::table('ref_factions')->insert([
             'name' => 'Корпорация Глобалис',
