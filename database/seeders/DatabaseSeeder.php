@@ -105,5 +105,20 @@ class DatabaseSeeder extends Seeder
             'description' => 'Сэм Блэйд - бывший военный хакер и технический специалист, который перешел на сторону Анархохакеров Кибернетики. Он обладает уникальными навыками в обходе защитных систем и использовании вооружения. Сэм одет в грязно-белые киберкамуфляжи и всегда вооружен передовыми кибер-инструментами.',
             'image' => 'none'
         ]);
+
+        DB::table('ref_characteristics')->insert([
+            'name' => 'Атака',
+            'icon' => 'none'
+        ]);
+
+        DB::table('ref_characteristics')->insert([
+            'name' => 'Броня',
+            'icon' => 'none'
+        ]);
+
+        DB::table('ref_characteristics')->insert([
+            'name' => 'Здоровье',
+            'icon' => 'none'
+        ]);
     }
 }
