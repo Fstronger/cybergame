@@ -33,4 +33,24 @@ class UserHelper
         return $userCharacteristics;
     }
 
+    /**
+     * Получение ресурсов игрока
+     * @return array
+     */
+    public function getUserResources(): array
+    {
+        $resources = $this->user->resources;
+        $userResources = [];
+        foreach ($resources as $resource) {
+            $userResources[] = [
+                'name' => $resource->resourcesName->name,
+                'icon' => $resource->resourcesName->icon,
+                'amount' => $resource->amount,
+                'max_amount' => $resource->max_amount
+            ];
+        }
+
+        return $userResources;
+    }
+
 }

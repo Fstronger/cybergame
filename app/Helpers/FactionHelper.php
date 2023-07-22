@@ -28,7 +28,7 @@ class FactionHelper
                 'name' => $factionHero->name,
                 'description' => $factionHero->description,
                 'image' => $factionHero->image,
-                'characteristics' =>  $this->getFactionHeroesCharacteristic($factionHero)
+                'characteristics' => $this->getFactionHeroesCharacteristic($factionHero)
             ];
 
         }

@@ -168,5 +168,17 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        DB::table('ref_resources')->insert([
+            'name' => 'Биток',
+            'icon' => 'none'
+        ]);
+
+        DB::table('user_resources')->insert([
+            'user_id' => 1,
+            'resource_id' => 1,
+            'amount' => 50,
+            'max_amount' => 1000,
+        ]);
+
     }
 }
