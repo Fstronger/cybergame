@@ -36,15 +36,22 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
+                            <h3>Характеристики</h3>
                             <span class="text-white " v-for="userCharacteristic in $page.props.auth.userCharacteristics">
+                                <br>
                                 {{ userCharacteristic.name }}
                                 {{ userCharacteristic.amount }}
                             </span>
+                            <br>
+                            <br>
+                            <h3>Ресурсы</h3>
                             <span class="text-white " v-for="userResource in $page.props.auth.userResources">
-                                {{ userResource.name }}
-                                {{ userResource.amount }}Текущее
-                                {{ userResource.max_amount }}Макс
+                                <br>
+                                <p>{{ userResource.name }}</p>
+                                <p>Текущее {{ userResource.amount }}</p>
+                                <p>Макс {{ userResource.max_amount }}</p>
                             </span>
+                            <br>
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">
