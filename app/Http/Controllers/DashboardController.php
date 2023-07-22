@@ -19,6 +19,7 @@ class DashboardController extends Controller
      */
     public function index(Request $request): Response
     {
+        //Вывод всех фракций
         $factions = RefFactions::all();
         return Inertia::render('Dashboard', [
             'factions' => $factions

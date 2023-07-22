@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\RefCharacteristics;
 use App\Models\User;
+use App\Models\UserCharacteristics;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
@@ -43,6 +46,24 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'last_login' => ''
         ]);
+
+        $userCharacteristics = UserCharacteristics::upsert([
+            [
+                'user_id' => $user['id'],
+                'characteristic_id' => RefCharacteristics::ATTACK,
+                'amount' => 15
+            ],
+            [
+                'user_id' => $user['id'],
+                'characteristic_id' => RefCharacteristics::ARMOR,
+                'amount' => 20
+            ],
+            [
+                'user_id' => $user['id'],
+                'characteristic_id' => RefCharacteristics::HP,
+                'amount' => 100
+            ]
+        ], ['user_id', 'characteristic_id'], ['amount']);
 
         event(new Registered($user));
 

@@ -9,6 +9,15 @@ class RefCharacteristics extends Model
 {
     use HasFactory;
 
+    // Константа для характеристики "Атака"
+    const ATTACK  = 1;
+
+    // Константа для характеристики "Броня"
+    const ARMOR = 2;
+
+    // Константа для характеристики "Здоровье"
+    const HP = 3;
+
     /**
      * The table associated with the model.
      *
