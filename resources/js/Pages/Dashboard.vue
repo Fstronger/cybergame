@@ -10,27 +10,15 @@ defineProps({ factions: Object })
     <Head title="Обзорная" />
 
     <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Обзорная</h2>
-        </template>
+        <div class="card" style="width: 24%;">
+            <h2 class="card__title">Информация о фракциях</h2>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">Информация о фракциях</div>
-
-                    <ul class="p-6 text-gray-900 dark:text-gray-100" id="example-1">
-                        <li v-for="faction in factions" :key="faction.id">
-                            <br>
-                            <br>
-                            {{ faction.name }}
-                            <br>
-                            <br>
-                            {{ faction.description }}
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <ul class="card__list">
+                <li v-for="faction in factions" :key="faction.id">
+                    {{ faction.name }}
+                    {{ faction.description }}
+                </li>
+            </ul>
         </div>
     </AuthenticatedLayout>
 </template>
