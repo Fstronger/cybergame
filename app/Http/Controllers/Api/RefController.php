@@ -20,13 +20,11 @@ class RefController extends Controller
         $factions = RefFactions::all();
         $factionWithHeroes = [];
         foreach($factions as $faction){
-            $factionHelper = new FactionHelper($faction);
             $factionWithHeroes[] = [
                 'id' => $faction->id,
                 'name' => $faction->name,
                 'description' => $faction->description,
-                'image' => $faction->image,
-                'heroes' => $factionHelper->getFactionHeroes()
+                'image' => $faction->image
             ];
         }
 
