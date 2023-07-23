@@ -26,6 +26,7 @@ class UserHelper
             $userCharacteristics[] = [
                 'name' => $characteristic->characteristicName->name,
                 'icon' => $characteristic->characteristicName->icon,
+                'current_amount' => $characteristic->current_amount,
                 'amount' => $characteristic->amount
             ];
         }

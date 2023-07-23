@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('characteristic_id');
+            $table->integer('current_amount');
             $table->integer('amount');
             $table->timestamps();
         });
