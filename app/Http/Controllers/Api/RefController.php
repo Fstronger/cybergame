@@ -24,7 +24,7 @@ class RefController extends Controller
             $factionWithHeroes[] = [
                 'id' => $faction->id,
                 'name' => $faction->name,
-                'description' => $faction->desctiption,
+                'description' => $faction->description,
                 'image' => $faction->image,
                 'heroes' => $factionHelper->getFactionHeroes()
             ];
