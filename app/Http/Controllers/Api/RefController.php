@@ -18,8 +18,19 @@ class RefController extends Controller
     public function getFactions(): JsonResponse
     {
         $factions = RefFactions::all();
+        $factionWithHeroes = [];
+        foreach($factions as $faction){
+            $factionHelper = new FactionHelper($faction);
+            $factionWithHeroes[] = [
+                'id' => $faction->id,
+                'name' => $faction->name,
+                'description' => $faction->desctiption,
+                'image' => $faction->image,
+                'heroes' => $factionHelper->getFactionHeroes()
+            ];
+        }
 
-        return  response()->json(['data' => $factions, 'status' => '200']);
+        return  response()->json(['data' => $factionWithHeroes, 'status' => '200']);
     }
 
     /**
