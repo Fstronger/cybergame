@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
              [
                  'user_id' => 1,
                  'characteristic_id' => RefCharacteristics::ATTACK,
-                 'amount' => 15
+                 'current_amount' => 15,
+                 'amount' => 999999
              ]
          );
 
@@ -38,7 +39,8 @@ class DatabaseSeeder extends Seeder
              [
                  'user_id' => 1,
                  'characteristic_id' => RefCharacteristics::ARMOR,
-                 'amount' => 20
+                 'current_amount' => 20,
+                 'amount' => 999999
              ]
          );
 
@@ -46,6 +48,7 @@ class DatabaseSeeder extends Seeder
              [
                  'user_id' => 1,
                  'characteristic_id' => RefCharacteristics::HP,
+                 'current_amount' => 95,
                  'amount' => 100
              ]
          );

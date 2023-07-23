@@ -40,6 +40,7 @@ const showingNavigationDropdown = ref(false);
                             <span class="text-white " v-for="userCharacteristic in $page.props.auth.userCharacteristics">
                                 <br>
                                 {{ userCharacteristic.name }}
+                                {{ userCharacteristic.current_amount }}
                                 {{ userCharacteristic.amount }}
                             </span>
                             <br>
