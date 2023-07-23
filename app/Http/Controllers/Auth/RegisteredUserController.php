@@ -25,11 +25,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        //Вывод всех фракций
-        $factions = RefFactions::all();
-        return Inertia::render('Auth/Register', [
-            'factions' => $factions
-        ]);
+        return Inertia::render('Auth/Register');
     }
 
     /**

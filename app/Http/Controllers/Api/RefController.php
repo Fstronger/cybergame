@@ -5,16 +5,29 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\FactionHelper;
 use App\Http\Controllers\Controller;
 use App\Models\RefFactions;
+use Illuminate\Http\JsonResponse;
 
 class RefController extends Controller
 {
 
+
+    /**
+     * Возращает список фракций
+     * @return JsonResponse
+     */
+    public function getFactions(): JsonResponse
+    {
+        $factions = RefFactions::all();
+
+        return  response()->json(['data' => $factions, 'status' => '200']);
+    }
+
     /**
      * Возращает список героев фракции
      * @param $factionId
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function getFactionHeroes($factionId)
+    public function getFactionHeroes($factionId): JsonResponse
     {
         $faction = RefFactions::findOrFail($factionId);
 
