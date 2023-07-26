@@ -1,9 +1,9 @@
 <template>
     <div>
         <Step1 v-if="step === 1" @next="nextStep" />
-        <Step2 v-if="step === 2" @next="nextStep" />
-        <Step3 v-if="step === 3" @next="nextStep" />
-        <Step4 v-if="step === 4" @next="resetStep" />
+        <Step2 v-if="step === 2" @next="nextStep" @prev="prevStep" />
+        <Step3 v-if="step === 3" @next="nextStep" @prev="prevStep" />
+        <Step4 v-if="step === 4" @prev="prevStep" />
     </div>
 </template>
 
@@ -29,8 +29,8 @@ export default {
         nextStep() {
             this.step++;
         },
-        resetStep() {
-            this.step = 1;
+        prevStep() {
+            this.step--;
         },
     },
 };
