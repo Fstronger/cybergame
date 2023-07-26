@@ -17,7 +17,7 @@
 
         <div class="btn-group">
             <button class="btn btn--no-bg" @click="prevStep">Назад</button>
-            <button class="btn btn--primary" @click="nextStep" :disabled="!selectedCharacter">Next</button>
+            <button class="btn btn--primary" @click="nextStep" :disabled="!selectedCharacter">Вперед</button>
         </div>
 
     </div>
