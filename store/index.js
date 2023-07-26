@@ -3,14 +3,25 @@ import { createStore } from 'vuex';
 export default createStore({
     state: {
         registration: {
-            name: '',
-            faction: '',
-            character: '',
+            authData: {
+                name: '',
+                mail: '',
+                password: '',
+                passwordConfirmation: '',
+            },
+            faction: {
+                ID: '',
+                name: ''
+            },
+            character: {
+                ID: '',
+                name: ''
+            },
         },
     },
     mutations: {
-        SET_NAME(state, { firstName, lastName }) {
-            state.registration.name = `${firstName} ${lastName}`;
+        SET_AUTH(state, authData) {
+            state.registration.auth = authData;
         },
         SET_FACTION(state, faction) {
             state.registration.faction = faction;
@@ -20,7 +31,7 @@ export default createStore({
         },
         RESET_REGISTRATION(state) {
             state.registration = {
-                name: '',
+                authData: '',
                 faction: '',
                 character: '',
             };

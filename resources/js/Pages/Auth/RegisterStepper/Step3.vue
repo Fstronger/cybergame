@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         selectCharacter(character) {
-            this.selectedCharacter = character.name;
+            this.selectedCharacter = character;
         },
         nextStep() {
             this.$store.commit('SET_CHARACTER', this.selectedCharacter);

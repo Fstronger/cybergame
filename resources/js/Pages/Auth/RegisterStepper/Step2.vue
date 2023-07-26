@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         selectFaction(faction) {
-            this.selectedFaction = faction.name;
+            this.selectedFaction = faction;
         },
         nextStep() {
             this.$store.commit('SET_FACTION', this.selectedFaction);
