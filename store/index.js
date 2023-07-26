@@ -93,7 +93,12 @@ export default createStore({
         },
     },
     actions: {
-        // Фетчим фракции из бд
+        /**
+         * Получаем список фракций из бд
+         *
+         * @param commit
+         * @returns {Promise<void>}
+         */
         async fetchFactions({commit}) {
             try {
                 const response = await axios.get('/factions'); // Здесь замените URL на ваш API
@@ -103,7 +108,12 @@ export default createStore({
             }
         },
 
-        // Фетчим фракции из бд
+        /**
+         * Получаем список персонажей из бд
+         *
+         * @param commit
+         * @returns {Promise<void>}
+         */
         async fetchHeroes({commit}) {
             try {
                 const response = await axios.get(`/faction-heroes/1`);
