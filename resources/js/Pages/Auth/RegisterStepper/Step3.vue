@@ -4,7 +4,7 @@
             <div
                 v-for="character in characters"
                 :key="character.id"
-                :class="['card', { 'isActive': selectedCharacter === character.name }]"
+                :class="['card', { 'isActive': selectedCharacter === character }]"
                 style="width: 33%;"
                 @click="selectCharacter(character)"
             >
@@ -15,7 +15,11 @@
             </div>
         </div>
 
-        <button class="btn btn--primary" @click="nextStep" :disabled="!selectedCharacter">Next</button>
+        <div class="btn-group">
+            <button class="btn btn--no-bg" @click="prevStep">Назад</button>
+            <button class="btn btn--primary" @click="nextStep" :disabled="!selectedCharacter">Next</button>
+        </div>
+
     </div>
 </template>
 
@@ -53,6 +57,9 @@ export default {
         nextStep() {
             this.$store.commit('SET_CHARACTER', this.selectedCharacter);
             this.$emit('next');
+        },
+        prevStep() {
+            this.$emit('prev');
         },
     },
 };

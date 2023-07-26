@@ -40,7 +40,10 @@
         </div>
     </div>
 
-    <button class="btn btn--primary" @click="submit">Подтверждаю</button>
+    <div class="btn-group">
+        <button class="btn btn--no-bg" @click="prevStep">Назад</button>
+        <button class="btn btn--primary" @click="submit">Подтверждаю</button>
+    </div>
 </template>
 
 <script>
@@ -62,6 +65,9 @@ export default {
             alert('Добро пожаловать в ад!'); // Вместо этого можно отправить данные на сервер
             this.$store.commit('RESET_REGISTRATION');
             this.$emit('next');
+        },
+        prevStep() {
+            this.$emit('prev');
         },
     },
 };

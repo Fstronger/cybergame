@@ -4,7 +4,7 @@
             <div
                 v-for="faction in factions"
                 :key="faction.id"
-                :class="['card', { 'isActive': selectedFaction === faction.name }]"
+                :class="['card', { 'isActive': selectedFaction === faction}]"
                 style="width: 33%"
                 @click="selectFaction(faction)"
             >
@@ -15,8 +15,10 @@
             </div>
         </div>
 
-
-        <button class="btn btn--primary" @click="nextStep" :disabled="!selectedFaction">Next</button>
+        <div class="btn-group">
+            <button class="btn btn--no-bg" @click="prevStep">Назад</button>
+            <button class="btn btn--primary" @click="nextStep" :disabled="!selectedFaction">Вперед</button>
+        </div>
     </div>
 </template>
 
@@ -54,6 +56,9 @@ export default {
         nextStep() {
             this.$store.commit('SET_FACTION', this.selectedFaction);
             this.$emit('next');
+        },
+        prevStep() {
+            this.$emit('prev');
         },
     },
 };
