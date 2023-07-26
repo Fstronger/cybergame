@@ -16,15 +16,14 @@
 
             <div class="card__line">
                 <p class="card__text">Название фракции</p>
-                <h3 class="card__title" style="display: flex; align-items: center;"> <img width="40" :src="faction.image" alt="">{{ faction.name }} ID-{{ faction.id }}</h3>
-
+                <h3 class="card__title" style="display: flex; align-items: center;"> <img width="40" :src="`images/${faction.image}.svg`" alt="">{{ faction.name }} ID-{{ faction.id }}</h3>
             </div>
 
             <div class="card__line">
                 <p class="card__text">Название фракции</p>
                 <h3 class="card__title">{{ character.name }} ID-{{ character.id }}</h3>
                 <br>
-                <img width="80" :src="character.image" alt="">
+                <img width="80" :src="`images/${character.image}.png`" alt="">
             </div>
         </div>
 
@@ -70,6 +69,7 @@ export default {
             this.$emit('prev');
         },
     },
+    emits: ['next', 'prev'],
 };
 
 </script>
