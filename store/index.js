@@ -1,100 +1,67 @@
-import {createStore} from 'vuex';
+import { createStore } from 'vuex';
 import axios from 'axios';
 
 export default createStore({
     state: {
-        registration: {
-            authData: {
+        registrationData: {
+            name: '',
+            email: '',
+            password: '',
+            passwordConfirmation: '',
+        },
+        selectedFaction: [],
+        selectedCharacter: [],
+        factions: [],
+        characters: [],
+    },
+
+    //Меняем значения в стейте
+    mutations: {
+        //Грузим в стейт стора регистрационные данные
+        GET_REGISTRATION_DATA(state, registrationData) {
+            state.registrationData = registrationData;
+        },
+
+        //Сбрасываем форму регистрации
+        RESET_REGISTRATION_DATA(state) {
+            state.registrationData = {
                 name: '',
-                mail: '',
+                email: '',
                 password: '',
                 passwordConfirmation: '',
-            },
-            faction: {
-                ID: '',
-                name: ''
-            },
-            character: {
-                ID: '',
-                name: ''
-            },
-        },
-        factions: null,
-        heroes: null,
-    },
-    mutations: {
-        /**
-         * Получаем фракции из бд
-         *
-         * @param state
-         * @param payload
-         * @constructor
-         */
-        GET_FACTIONS(state, payload) {
-            state.factions = payload;
-        },
-
-        /**
-         * Получаем персонажей из бд
-         *
-         * @param state
-         * @param payload
-         * @constructor
-         */
-        GET_HEROES(state, payload) {
-            state.heroes = payload;
-        },
-
-        /**
-         * Забираем авторизационные данные из формы регистрации
-         *
-         * @param state
-         * @param authData
-         * @constructor
-         */
-        SET_AUTH(state, authData) {
-            state.registration.auth = authData;
-        },
-
-        /**
-         * Забираем выбранную фракцию
-         *
-         * @param state
-         * @param faction
-         * @constructor
-         */
-        SET_FACTION(state, faction) {
-            state.registration.faction = faction;
-        },
-
-        /**
-         * Забираем выбранного персонажа
-         *
-         * @param state
-         * @param character
-         * @constructor
-         */
-        SET_CHARACTER(state, character) {
-            state.registration.character = character;
-        },
-
-        /**
-         * Обнуление стора регистрации, хз может пригодится
-         *
-         * @param state
-         * @constructor
-         */
-        RESET_REGISTRATION(state) {
-            state.registration = {
-                authData: '',
-                faction: '',
-                character: '',
             };
         },
+
+        //Грузим в стейт стора список фракций
+        GET_FACTIONS(state, factions) {
+            state.factions = factions;
+        },
+
+        //Грузим в стейт стора список персонажей
+        GET_CHARACTERS(state, characters) {
+            state.characters = characters;
+        },
+
+        //Грузим в стейт стора список фракций
+        GET_SELECTED_FACTION(state, selectedFraction) {
+            state.selectedFaction = selectedFraction;
+        },
+
+        //Грузим в стейт стора список персонажей
+        GET_SELECTED_CHARACTER(state, selectedCharacter) {
+            state.selectedCharacter = selectedCharacter;
+        },
     },
+
+    //Асинхронне запросы к базе
     actions: {
-        // Фетчим фракции из бд
-        async fetchFactions({commit}) {
+        /**
+         * Получаем список фракций из базы данных
+         *
+         * @param commit
+         * @returns {Promise<void>}
+         */
+        async fetchFactions({ commit }) {
             try {
                 const response = await axios.get('/factions'); // Здесь замените URL на ваш API
                 commit('GET_FACTIONS', response.data);
@@ -103,11 +70,16 @@ export default createStore({
             }
         },
 
-        // Фетчим фракции из бд
-        async fetchHeroes({commit}) {
+        /**
+         * Получаем список персонажей из базы данных
+         *
+         * @param commit
+         * @returns {Promise<void>}
+         */
+        async fetchCharacters({ commit }) {
             try {
-                const response = await axios.get(`/faction-heroes/1`);
-                commit('GET_HEROES', response.data);
+                const response = await axios.get(`/faction-heroes/${this.state.selectedFaction.id}`);
+                commit('GET_CHARACTERS', response.data);
             } catch (error) {
                 console.error('Ошибка при выполнении запроса:', error);
             }

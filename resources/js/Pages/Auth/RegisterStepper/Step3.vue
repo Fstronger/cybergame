@@ -1,16 +1,16 @@
 <template>
     <div style="display: flex; flex-direction: column; align-items: center;">
         <div style="display: flex; gap: 16px;">
-            <div v-if="heroes"
-                v-for="hero in heroes.data"
-                :key="hero.id"
-                :class="['card', { 'isActive': selectedHero === hero }]"
+            <div v-if="characters"
+                v-for="character in characters.data"
+                :key="character.id"
+                :class="['card', { 'isActive': selectedCharacter === character }]"
                 style="width: 33%;"
-                @click="selectHero(hero)"
+                @click="selectCharacter(character)"
             >
-                <img class="card__img pers-img" :src="`images/${hero.image}.png`" :alt="hero.name"/>
-                <h3 class="card__title">{{ hero.name }}</h3>
-                <p class="card__text">{{ hero.description }}</p>
+                <img class="card__img pers-img" :src="`images/${character.image}.png`" :alt="character.name"/>
+                <h3 class="card__title">{{ character.name }}</h3>
+                <p class="card__text">{{ character.description }}</p>
 
             </div>
             <div class="card__text" v-else>Не удалось получить фракции</div>
@@ -18,7 +18,7 @@
 
         <div class="btn-group">
             <button class="btn btn--no-bg" @click="prevStep">Назад</button>
-            <button class="btn btn--primary" @click="nextStep" :disabled="!selectedHero">Вперед</button>
+            <button class="btn btn--primary" @click="nextStep" :disabled="!selectedCharacter">Вперед</button>
         </div>
 
     </div>
@@ -30,28 +30,28 @@ import {mapActions, mapState} from 'vuex';
 export default {
     data() {
         return {
-            selectedHero: null,
+            selectedCharacter: null,
         };
     },
     computed: {
-        ...mapState(['heroes']),
+        ...mapState(['characters']),
     },
     methods: {
-        selectHero(hero) {
-            this.selectedHero = hero;
+        selectCharacter(selectedCharacter) {
+            this.selectedCharacter = selectedCharacter;
         },
         nextStep() {
-            this.$store.commit('SET_CHARACTER', this.selectedHero);
+            this.$store.commit('GET_SELECTED_CHARACTER', this.selectedCharacter);
             this.$emit('next');
         },
         prevStep() {
             this.$emit('prev');
         },
-        ...mapActions(['fetchHeroes']),
+        ...mapActions(['fetchCharacters']),
     },
     emits: ['next', 'prev'],
     mounted() {
-        this.fetchHeroes();
+        this.fetchCharacters();
     },
 };
 </script>

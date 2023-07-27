@@ -39,7 +39,7 @@ export default {
             this.selectedFaction = faction;
         },
         nextStep() {
-            this.$store.commit('SET_FACTION', this.selectedFaction);
+            this.$store.commit('GET_SELECTED_FACTION', this.selectedFaction);
             this.$emit('next');
         },
         prevStep() {

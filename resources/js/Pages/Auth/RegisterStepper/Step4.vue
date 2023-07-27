@@ -1,45 +1,47 @@
 <template>
-    <div style="display: flex; gap: 16px;">
+    <div style="display: flex; gap: 16px; justify-content: center;">
         <div class="card" style="width: 30%; flex-shrink: 0; align-items: flex-start; gap: 16px;">
 
            <h2 class="card__text">Пользовательская часть</h2>
 
             <div class="card__line">
                 <p class="card__text">Игрок</p>
-                <h3 class="card__title">{{ auth.name }}</h3>
+                <h3 class="card__title">{{ registrationData.name }}</h3>
             </div>
 
             <div class="card__line">
                 <p class="card__text">Почта</p>
-                <h3 class="card__title">{{ auth.mail }}</h3>
+                <h3 class="card__title">{{ registrationData.mail }}</h3>
             </div>
 
             <div class="card__line">
                 <p class="card__text">Название фракции</p>
-                <h3 class="card__title" style="display: flex; align-items: center;"> <img width="40" :src="`images/${faction.image}.svg`" alt="">{{ faction.name }} ID-{{ faction.id }}</h3>
+                <h3 class="card__title" style="display: flex; align-items: center;"> <img width="40" :src="`images/${selectedFaction.image}.svg`" alt="">
+                    {{ selectedFaction.name }} ID-{{ selectedFaction.id }}</h3>
             </div>
 
             <div class="card__line">
-                <p class="card__text">Название фракции</p>
-                <h3 class="card__title">{{ character.name }} ID-{{ character.id }}</h3>
+                <p class="card__text">Название перса</p>
+                <h3 class="card__title">{{ selectedCharacter.name }} ID-{{ selectedCharacter.id }}</h3>
                 <br>
-                <img width="80" :src="`images/${character.image}.png`" alt="">
+                <img width="80" :src="`images/${selectedCharacter.image}.png`" alt="">
             </div>
         </div>
 
-        <div class="card" style="color: aquamarine; align-items: flex-start">
+        <div class="card" style="width: 70%; color: aquamarine; align-items: flex-start">
             <h2 class="card__text">Админская часть</h2>
             <br><br>
-
-            {{ auth }}
+            {{ registrationData }}
             <br><br><br>
-            {{ faction }}
+            {{ selectedFaction.id }}
+            {{ selectedFaction.name }}
             <br><br><br>
-            {{ character }}
+            {{ selectedCharacter.id }}
+            {{ selectedCharacter.name }}
         </div>
     </div>
 
-    <div class="btn-group">
+    <div class="btn-group btn-group--center">
         <button class="btn btn--no-bg" @click="prevStep">Назад</button>
         <button class="btn btn--primary" @click="submit">Подтверждаю</button>
     </div>
@@ -47,21 +49,21 @@
 
 <script>
 export default {
+    //Получаем мз стора итоговый
     computed: {
-        auth() {
-            return this.$store.state.registration.auth;
+        registrationData() {
+            return this.$store.state.registrationData;
         },
-        faction() {
-            return this.$store.state.registration.faction;
+        selectedFaction() {
+            return this.$store.state.selectedFaction;
         },
-        character() {
-            return this.$store.state.registration.character;
+        selectedCharacter() {
+            return this.$store.state.selectedCharacter;
         },
     },
     methods: {
         submit() {
-            // Здесь вы можете отправить данные на сервер или выполнить другие действия
-            alert('Добро пожаловать в ад!'); // Вместо этого можно отправить данные на сервер
+            alert('Добро пожаловать в ад!');
             this.$store.commit('RESET_REGISTRATION');
             this.$emit('next');
         },
