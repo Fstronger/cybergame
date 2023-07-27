@@ -25,6 +25,7 @@ class FactionHelper
         $heroes = [];
         foreach ($factionHeroes as $factionHero) {
             $heroes[] = [
+                'id' => $factionHero->id,
                 'name' => $factionHero->name,
                 'description' => $factionHero->description,
                 'image' => $factionHero->image,
