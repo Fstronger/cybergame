@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+import {router} from "@inertiajs/vue3";
 
 export default createStore({
     state: {
@@ -7,7 +8,7 @@ export default createStore({
             name: '',
             email: '',
             password: '',
-            passwordConfirmation: '',
+            password_confirmation: '',
         },
         selectedFaction: [],
         selectedCharacter: [],
@@ -28,7 +29,7 @@ export default createStore({
                 name: '',
                 email: '',
                 password: '',
-                passwordConfirmation: '',
+                password_confirmation: '',
             };
         },
 
@@ -82,6 +83,17 @@ export default createStore({
                 commit('GET_CHARACTERS', response.data);
             } catch (error) {
                 console.error('Ошибка при выполнении запроса:', error);
+            }
+        },
+
+        async submitRegistrationData({ state }) {
+            try {
+                const response = await axios.post('/register', state.registrationData);
+                // Здесь вы можете обработать ответ от сервера, если это необходимо
+                console.log(response.data);
+            } catch (error) {
+                // Обработка ошибок, если что-то пошло не так при отправке данных
+                console.error(error);
             }
         },
     },

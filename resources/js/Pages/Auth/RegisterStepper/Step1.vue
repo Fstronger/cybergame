@@ -6,8 +6,8 @@
         </div>
 
         <div class="form-group">
-            <label class="form-group__label" for="mail">Почта</label>
-            <input class="input" type="email" id="mail" v-model="mail"/>
+            <label class="form-group__label" for="email">Почта</label>
+            <input class="input" type="email" id="email" v-model="email"/>
         </div>
 
         <div class="form-group">
@@ -16,8 +16,8 @@
         </div>
 
         <div class="form-group">
-            <label class="form-group__label" for="passwordConfirmation">Подтверждение пароля</label>
-            <input class="input" type="password" id="passwordConfirmation" v-model="passwordConfirmation"/>
+            <label class="form-group__label" for="password_confirmation">Подтверждение пароля</label>
+            <input class="input" type="password" id="password_confirmation" v-model="password_confirmation"/>
         </div>
         <div class="btn-group btn-group--center">
             <button class="btn btn--primary" @click="nextStep">Вперед</button>
@@ -30,18 +30,18 @@ export default {
     data() {
         return {
             name: '',
-            mail: '',
+            email: '',
             password: '',
-            passwordConfirmation: ''
+            password_confirmation: ''
         };
     },
     methods: {
         nextStep() {
             this.$store.commit('GET_REGISTRATION_DATA', {
                 name: this.name,
-                mail: this.mail,
+                email: this.email,
                 password: this.password,
-                passwordConfirmation: this.passwordConfirmation,
+                password_confirmation: this.password_confirmation,
             });
             this.$emit('next');
         },
