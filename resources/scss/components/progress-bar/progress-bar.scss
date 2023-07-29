@@ -1,0 +1,36 @@
+
+$progress-width: 200px;
+$cell-width: calc($progress-width / 10);
+
+
+.progress-bar {
+    --cell-count:3;
+    width: $progress-width;
+    height: 18px;
+    padding: 4px 2px;
+    outline: 1px solid #435160;
+    margin-bottom: 8px;
+
+    &__track {
+
+        width: calc( var(--cell-count) * $cell-width);
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px;
+    }
+
+    &__cell {
+        display: flex;
+        height: 100%;
+        width: calc($cell-width - 4px);
+        flex-shrink: 0;
+        background-color: $color-cyan;
+    }
+}
+
+
+
+

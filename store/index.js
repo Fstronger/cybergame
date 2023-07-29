@@ -1,6 +1,5 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import {router} from "@inertiajs/vue3";
 
 export default createStore({
     state: {
@@ -88,7 +87,7 @@ export default createStore({
 
         async submitRegistrationData({ state }) {
             try {
-                const response = await axios.post('/register', state.registrationData);
+                const response = await axios.post('/register', state.registrationData, state.selectedFaction, state.selectedCharacter);
                 // Здесь вы можете обработать ответ от сервера, если это необходимо
                 console.log(response.data);
             } catch (error) {
