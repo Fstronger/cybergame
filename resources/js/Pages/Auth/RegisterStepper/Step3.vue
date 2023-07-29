@@ -2,16 +2,26 @@
     <div style="display: flex; flex-direction: column; align-items: center;">
         <div style="display: flex; gap: 16px;">
             <div v-if="characters"
-                v-for="character in characters.data"
-                :key="character.id"
-                :class="['card', { 'isActive': selectedCharacter === character }]"
-                style="width: 33%;"
-                @click="selectCharacter(character)"
+                 v-for="character in characters.data"
+                 :key="character.id"
+                 :class="['card', { 'isActive': selectedCharacter === character }]"
+                 style="width: 33%; flex-direction: row"
+                 @click="selectCharacter(character)"
             >
-                <img class="card__img pers-img" :src="`images/${character.image}.png`" :alt="character.name"/>
-                <h3 class="card__title">{{ character.name }}</h3>
-                <p class="card__text">{{ character.description }}</p>
 
+                <div style="margin-right: 16px;">
+                    <img class="card__img pers-img" :src="`images/${character.image}.png`" :alt="character.name"/>
+                </div>
+                <div>
+                    <h3 class="card__title">{{ character.name }}</h3>
+                    <ul class="pers-stats">
+                        <li class="pers-stats__item" v-for="characteristic in character.characteristics">
+                            <span class="pers-stats__label">{{ characteristic.name }} - {{characteristic.amount}}</span>
+                            <ProgressBar :cellCount="characteristic.amount / 10"/>
+                        </li>
+                    </ul>
+                    <p class="card__text">{{ character.description }}</p>
+                </div>
             </div>
             <div class="card__text" v-else>Не удалось получить фракции</div>
         </div>
@@ -20,14 +30,15 @@
             <button class="btn btn--no-bg" @click="prevStep">Назад</button>
             <button class="btn btn--primary" @click="nextStep" :disabled="!selectedCharacter">Вперед</button>
         </div>
-
     </div>
 </template>
 
 <script>
 import {mapActions, mapState} from 'vuex';
+import ProgressBar from "@/Components/ProgressBar.vue";
 
 export default {
+    components: {ProgressBar},
     data() {
         return {
             selectedCharacter: null,

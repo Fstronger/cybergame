@@ -7,7 +7,7 @@ export default createStore({
             name: '',
             email: '',
             password: '',
-            passwordConfirmation: '',
+            password_confirmation: '',
         },
         selectedFaction: [],
         selectedCharacter: [],
@@ -28,7 +28,7 @@ export default createStore({
                 name: '',
                 email: '',
                 password: '',
-                passwordConfirmation: '',
+                password_confirmation: '',
             };
         },
 
@@ -82,6 +82,17 @@ export default createStore({
                 commit('GET_CHARACTERS', response.data);
             } catch (error) {
                 console.error('Ошибка при выполнении запроса:', error);
+            }
+        },
+
+        async submitRegistrationData({ state }) {
+            try {
+                const response = await axios.post('/register', state.registrationData, state.selectedFaction, state.selectedCharacter);
+                // Здесь вы можете обработать ответ от сервера, если это необходимо
+                console.log(response.data);
+            } catch (error) {
+                // Обработка ошибок, если что-то пошло не так при отправке данных
+                console.error(error);
             }
         },
     },

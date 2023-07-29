@@ -43,7 +43,7 @@
 
     <div class="btn-group btn-group--center">
         <button class="btn btn--no-bg" @click="prevStep">Назад</button>
-        <button class="btn btn--primary" @click="submit">Подтверждаю</button>
+        <button class="btn btn--primary" @click="onSubmitRegistration()">Подтверждаю</button>
     </div>
 </template>
 
@@ -62,10 +62,15 @@ export default {
         },
     },
     methods: {
-        submit() {
-            alert('Добро пожаловать в ад!');
-            this.$store.commit('RESET_REGISTRATION');
-            this.$emit('next');
+
+        async onSubmitRegistration() {
+            try {
+                await this.$store.dispatch('submitRegistrationData');
+                // Успешно отправлено, обработайте результат, если необходимо
+            } catch (error) {
+                // Обработка ошибок при отправке данных
+                console.error(error);
+            }
         },
         prevStep() {
             this.$emit('prev');
