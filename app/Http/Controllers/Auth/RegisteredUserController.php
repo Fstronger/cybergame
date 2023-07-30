@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:'.User::class,
@@ -47,29 +47,31 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'last_login' => ''
         ]);
+//
+//        $userCharacteristics = UserCharacteristics::upsert([
+//            [
+//                'user_id' => $user['id'],
+//                'characteristic_id' => RefCharacteristics::ATTACK,
+//                'amount' => 15
+//            ],
+//            [
+//                'user_id' => $user['id'],
+//                'characteristic_id' => RefCharacteristics::ARMOR,
+//                'amount' => 20
+//            ],
+//            [
+//                'user_id' => $user['id'],
+//                'characteristic_id' => RefCharacteristics::HP,
+//                'amount' => 100
+//            ]
+//        ], ['user_id', 'characteristic_id'], ['amount']);
 
-        $userCharacteristics = UserCharacteristics::upsert([
-            [
-                'user_id' => $user['id'],
-                'characteristic_id' => RefCharacteristics::ATTACK,
-                'amount' => 15
-            ],
-            [
-                'user_id' => $user['id'],
-                'characteristic_id' => RefCharacteristics::ARMOR,
-                'amount' => 20
-            ],
-            [
-                'user_id' => $user['id'],
-                'characteristic_id' => RefCharacteristics::HP,
-                'amount' => 100
-            ]
-        ], ['user_id', 'characteristic_id'], ['amount']);
+//        event(new Registered($user));
+//
+//        Auth::login($user);
 
-        event(new Registered($user));
+//        return redirect(RouteServiceProvider::HOME);
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        return  response()->json(['data' => $user, 'status' => '200']);
     }
 }
