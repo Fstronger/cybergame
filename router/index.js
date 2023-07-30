@@ -1,20 +1,20 @@
-
 import {createRouter, createWebHistory} from 'vue-router';
-import Success from "@/Pages/Auth/Success.vue";
+import Step2 from "/resources/js/Pages/Auth/RegisterStepper/Step2.vue";
+import Welcome from "@/Pages/Welcome.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            name: 'Success',
-            component: Success,
+            name: '/welcome',
+            component: Welcome,
         },
-        // {
-        //     path: '/success',
-        //     name: 'success',
-        //     component: Success,
-        // },
+        {
+            path: '/step2',
+            name: 'step2',
+            component: Step2,
+        },
     ],
 });
 

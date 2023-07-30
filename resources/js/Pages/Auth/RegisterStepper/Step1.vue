@@ -5,20 +5,9 @@
             <input class="input" type="text" id="name" v-model="name"/>
         </div>
 
-        <div class="form-group" v-if="!isHide">
+        <div class="form-group">
             <label class="form-group__label" for="email">Введите email</label>
-            <div class="form-group__input">
-                <input class="input" type="email" id="email" v-model="email"/>
-                <button class="btn btn--secondary" @click="isHide = true">Подтвердить</button>
-            </div>
-        </div>
-
-        <div class="form-group" v-if="isHide">
-            <label class="form-group__label" for="code_request">Введите код авторизации</label>
-            <div class="form-group__input">
-                <input class="input" type="password" id="code_request" v-model="code_request"/>
-                <button class="btn btn--secondary">Отправить код</button>
-            </div>
+            <input class="input" type="email" id="email" v-model="email"/>
         </div>
 
         <div class="form-group">
@@ -31,33 +20,38 @@
             <input class="input" type="password" id="password_confirmation" v-model="password_confirmation"/>
         </div>
         <div class="btn-group btn-group--center">
-            <button class="btn btn--primary" @click="nextStep">Вперед</button>
+             <button class="btn btn--primary" @click="onSubmit">Вперед</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    name: 'Register',
     data() {
         return {
-            name: '',
             email: '',
+            name: '',
             password: '',
             password_confirmation: '',
-            code_request: '',
             isHide: false
-        };
+        }
     },
     methods: {
-        nextStep() {
-            this.$store.commit('GET_REGISTRATION_DATA', {
-                name: this.name,
-                email: this.email,
-                password: this.password,
-                password_confirmation: this.password_confirmation,
-            });
-            this.$emit('next');
-        },
-    },
-};
+        onSubmit() {
+            console.log('Отправка формы');
+            this.$store
+                .dispatch('register', {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                    password_confirmation: this.password_confirmation
+                })
+                .then(() => {
+                    console.log('Успешная регистрация');
+                    this.$router.push({ name: 'step2' });
+                })
+        }
+    }
+}
 </script>
