@@ -49,7 +49,7 @@ export default {
                 })
                 .then(() => {
                     console.log('Успешная регистрация');
-                    this.$router.push({ name: 'step2' });
+                    this.$emit('next');
                 })
         }
     }
