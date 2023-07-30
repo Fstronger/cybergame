@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\RefCharacteristics;
 use App\Models\RefFactions;
+use App\Models\RefHeroesFactionCharacteristics;
+use App\Models\RefHeroesFactions;
 use App\Models\User;
 use App\Models\UserCharacteristics;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,5 +76,48 @@ class RegisteredUserController extends Controller
 //        return redirect(RouteServiceProvider::HOME);
 
         return  response()->json(['data' => $user, 'status' => '200']);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function registerComplete(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $findUser = User::findOrFail($request->user_id);
+
+        if ($findUser){
+            $findFaction = RefFactions::findOrFail($request->faction_id);
+            $findHeroes = RefHeroesFactions::findOrFail($request->heroes_id);
+            $findUser->update([
+                'heroes_id' => $findHeroes->getId(),
+                'faction_id' => $findFaction->getId()
+            ]);
+
+        $heroesStats = RefHeroesFactionCharacteristics::findOrFail('heroes_id', $findHeroes->getId());
+
+        $userCharacteristics = UserCharacteristics::upsert([
+            [
+                'user_id' => $findUser->getId(),
+                'characteristic_id' => RefCharacteristics::ATTACK,
+                'amount' => 15
+            ],
+            [
+                'user_id' => $findUser->getId(),
+                'characteristic_id' => RefCharacteristics::ARMOR,
+                'amount' => 20
+            ],
+            [
+                'user_id' => $findUser->getId(),
+                'characteristic_id' => RefCharacteristics::HP,
+                'amount' => 100
+            ]
+        ], ['user_id', 'characteristic_id'], ['amount']);
+
+            return  response()->json(['data' => $findUser, 'status' => '200']);
+        }else{
+            return  response()->json(['message' => 'Произошла ошибка, попробуйте позднее', 'status' => '500']);
+        }
     }
 }
